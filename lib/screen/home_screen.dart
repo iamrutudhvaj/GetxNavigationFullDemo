@@ -9,7 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int count = 0;
+  final count = 0.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,8 +85,7 @@ class _HomePageState extends State<HomePage> {
             ),
             RaisedButton(
               onPressed: () async {
-                count = await Get.to(FourthScreen());
-                setState(() {});
+                count.value = await Get.to(FourthScreen());
               },
               child: Container(
                 child: Center(
@@ -94,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Text(count.toString()),
+            Obx(() => Text("Count is ${count.value}")),
           ],
         ),
       ),
